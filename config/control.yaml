@@ -1,0 +1,40 @@
+joint_state_control:
+  type: "joint_state_controller/JointStateController"
+  publish_rate: 250
+
+pos_traj_control:
+  type: "position_controllers/JointTrajectoryController"
+  publish_rate: 250
+  joints:
+    - joint1
+    - joint2
+  allow_partial_joints_goal: true
+
+pos_controller:
+  type: "position_controllers/JointGroupController"
+  publish_rate: 250
+  joints:
+    - joint1
+    - joint2
+
+vel_traj_control:
+  type: "velocity_controllers/JointTrajectoryController"
+  publish_rate: 250
+  joints:
+    - joint1
+    - joint2
+  gains:
+    joint1: {p: 100,  d: 1, i: 1, i_clamp: 1}
+    joint2: {p: 100,  d: 1, i: 1, i_clamp: 1}
+  allow_partial_joints_goal: true
+
+eff_traj_control:
+  type: "effort_controllers/JointTrajectoryController"
+  publish_rate: 250
+  joints:
+    - joint1
+    - joint2
+  gains:
+    joint1: {p: 5,  d: 0, i: 1, i_clamp: 1}
+    joint2: {p: 5,  d: 0, i: 1, i_clamp: 1}
+  allow_partial_joints_goal: true

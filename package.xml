@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>kondo_b3m_control</name>
+  <version>0.0.1</version>
+  <description>The kondo_b3m_control package</description>
+  <maintainer email="nomumu-github@koso2-dan.ddo.jp">nomumu</maintainer>
+  <license>Apache 2.0</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>controller_manager</build_depend>
+  <build_depend>hardware_interface</build_depend>
+
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>hardware_interface</exec_depend>
+  <exec_depend>joint_state_controller</exec_depend>
+  <exec_depend>joint_trajectory_controller</exec_depend>
+
+  <export>
+
+  </export>
+</package>

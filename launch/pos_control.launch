@@ -1,0 +1,26 @@
+<launch>
+  <arg name="use_gazebo" default="false"/>
+  <arg name="use_rviz" default="false"/>
+  <arg name="tty_port" default="/dev/ttyKondo485"/>
+  <group ns="b3m">
+    <rosparam file="$(find kondo_b3m_control)/config/control.yaml" command="load"/>
+
+    <rosparam file="$(find kondo_b3m_control)/config/b3m_config.yaml" command="load"/>
+    <param name="b3m_config/port" value="$(arg tty_port)"/>
+
+    <param name="robot_description" type="str" textfile="$(find kondo_b3m_description)/urdf/b3m.urdf"/>
+
+    <node name="controller_manager"
+        pkg="controller_manager"
+        type="spawner" respawn="false"
+        output="screen"
+        args="joint_state_control
+              pos_traj_control"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" respawn="false"/>
+
+    <rosparam file="$(find kondo_b3m_control)/config/gazebo_ros_control.yaml" command="load" if="$(arg use_gazebo)" />
+    <node name="b3m_control" pkg="kondo_b3m_control" type="kondo_b3m_control" output="screen" respawn="false" unless="$(arg use_gazebo)" />
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find kondo_b3m_control)/config/display.rviz" if="$(arg use_rviz)"/>
+  </group>
+</launch>

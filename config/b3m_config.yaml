@@ -1,0 +1,9 @@
+# B3M Control settings
+b3m_config:
+  port: "/dev/ttyKondo485"
+  baudrate: 1500000
+  joints:
+    - joint1
+    - joint2
+  joint1: {id: 0, type: "Position" }
+  joint2: {id: 1, type: "Position" }
