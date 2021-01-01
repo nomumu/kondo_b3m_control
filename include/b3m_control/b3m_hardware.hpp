@@ -28,7 +28,7 @@ public:
     B3mHardware( std::string dev_name, uint32_t baudrate, ros::NodeHandle handle );
     ~B3mHardware();
     bool is_init(void);
-    bool regist_joint( uint8_t id, enB3mJointType type, std::string name );
+    bool regist_joint( uint8_t id, enB3mJointType type, std::string name, bool reverse );
     void regist_interface(void);
     void update(void);
     void torque_on(void);

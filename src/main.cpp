@@ -59,6 +59,7 @@ int main( int argc, char* argv[] )
         uint8_t         reg_id;
         enB3mJointType  reg_type;
         std::string     reg_name;
+        bool            reg_reverse;
         reg_id = itr->id_;
         switch( itr->type_ ){
         case enB3mJointConfigType_Velocity:
@@ -73,7 +74,8 @@ int main( int argc, char* argv[] )
             break;
         }
         reg_name = itr->name_;
-        b3m.regist_joint(reg_id,reg_type,reg_name); // 登録
+        reg_reverse= itr->reverse_;
+        b3m.regist_joint(reg_id,reg_type,reg_name,reg_reverse); // 登録
     }
     b3m.regist_interface();
     b3m.reset();

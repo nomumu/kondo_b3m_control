@@ -49,10 +49,11 @@ bool B3mHardware::is_init(void)
  * @param id：サーボID
  * @param type：ジョイント種別
  * @param name：ジョイント名称
+ * @param reverse：回転方向の反転設定
  * @return 登録OK(true)
  * @return 登録NG(false)
  */
-bool B3mHardware::regist_joint( uint8_t id, enB3mJointType type, std::string name )
+bool B3mHardware::regist_joint( uint8_t id, enB3mJointType type, std::string name, bool reverse )
 {
     bool result = true;
 
@@ -62,7 +63,7 @@ bool B3mHardware::regist_joint( uint8_t id, enB3mJointType type, std::string nam
         }
     }
     if( result ){
-        joint_.push_back( B3mJoint( id, type, name ) );
+        joint_.push_back( B3mJoint( id, type, name, reverse ) );
         std::vector<B3mJoint>::iterator joint_itr = (joint_.end()-1); // 今登録したデータ
 
         joint_itr->set_pos( 0.0 );

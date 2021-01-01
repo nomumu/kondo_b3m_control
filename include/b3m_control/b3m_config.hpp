@@ -19,6 +19,7 @@
 #define     KEY_JOINTS          ("/joints")
 #define     KEY_PARAM_ID        ("/id")
 #define     KEY_PARAM_TYPE      ("/type")
+#define     KEY_PARAM_REVERSE   ("/reverse")
 
 #define     TYPE_POSITION       ("Position")
 #define     TYPE_VELOCITY       ("Velocity")
@@ -40,6 +41,7 @@ typedef struct {
     std::string             name_;
     uint8_t                 id_;
     enB3mJointConfigType    type_;
+    bool                    reverse_;
 } stB3mJointConfig;
 
 /**

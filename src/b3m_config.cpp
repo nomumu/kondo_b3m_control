@@ -157,11 +157,13 @@ bool B3mConfig::load_param( void )
     bool result = true;
     
     for(std::vector<stB3mJointConfig>::iterator itr=joints_.begin() ; itr!=joints_.end() ; ++itr){
-        std::string key_joint       = (std::string(KEY_B3M_CONFIG) + "/" + itr->name_);
-        std::string key_param_id    = (key_joint + KEY_PARAM_ID);
-        std::string key_param_type  = (key_joint + KEY_PARAM_TYPE);
+        std::string key_joint           = (std::string(KEY_B3M_CONFIG) + "/" + itr->name_);
+        std::string key_param_id        = (key_joint + KEY_PARAM_ID);
+        std::string key_param_type      = (key_joint + KEY_PARAM_TYPE);
+        std::string key_param_reverse   = (key_joint + KEY_PARAM_REVERSE);
         int load_id = 0;
         std::string load_type = "";
+        bool load_reverse = false;
         bool load_result = true;
         if( !nh_.getParam( key_param_id, load_id ) ){
             ROS_ERROR("Undefined key %s", key_param_id.c_str());
@@ -169,6 +171,10 @@ bool B3mConfig::load_param( void )
         }
         if( !nh_.getParam( key_param_type, load_type ) ){
             ROS_ERROR("Undefined key %s", key_param_type.c_str());
+            load_result = false;
+        }
+        if( !nh_.getParam( key_param_reverse, load_reverse ) ){
+            ROS_ERROR("Undefined key %s", key_param_reverse.c_str());
             load_result = false;
         }
         if( load_result ){
@@ -184,6 +190,7 @@ bool B3mConfig::load_param( void )
                 result = false;
                 break;
             }
+            itr->reverse_ = load_reverse;
         }else{
             result = false;
             break;

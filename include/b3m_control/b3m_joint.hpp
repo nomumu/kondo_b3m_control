@@ -33,7 +33,7 @@ typedef enum {
 class B3mJoint : public B3mServo
 {
 public:
-    B3mJoint( uint8_t id, enB3mJointType type, std::string name_ );
+    B3mJoint( uint8_t id, enB3mJointType type, std::string name, bool reverse );
     ~B3mJoint();
     static EN_OPTIONS conv_type( enB3mJointType type );
 
@@ -55,6 +55,7 @@ public:
 private:
     enB3mJointType  type_;
     std::string     name_;
+    bool            reverse_;
     double          pos_;   // [rad]
     double          vel_;   // [rad/sec]
     double          eff_;   // [Nm]

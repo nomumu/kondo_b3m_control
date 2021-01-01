@@ -5,5 +5,5 @@ b3m_config:
   joints:
     - joint1
     - joint2
-  joint1: {id: 0, type: "Position" }
-  joint2: {id: 1, type: "Position" }
+  joint1: {id: 0, type: "Position", reverse: true }
+  joint2: {id: 1, type: "Position", reverse: true }

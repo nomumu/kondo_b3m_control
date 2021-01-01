@@ -15,8 +15,9 @@
  * @param id：サーボID
  * @param type：ジョイントタイプ
  * @param name：ジョイント名
+ * @param reverse：回転方向の反転設定
  */
-B3mJoint::B3mJoint( uint8_t id, enB3mJointType type, std::string name )
+B3mJoint::B3mJoint( uint8_t id, enB3mJointType type, std::string name, bool reverse )
  : B3mServo( id, conv_type(type) )
 {
     type_   = type;
@@ -24,6 +25,7 @@ B3mJoint::B3mJoint( uint8_t id, enB3mJointType type, std::string name )
         name = std::string("joint") + std::to_string(id);
     }
     name_   = name;
+    reverse_= reverse;
     pos_    = 0.0;
     vel_    = 0.0;
     eff_    = 0.0;
@@ -73,7 +75,7 @@ EN_OPTIONS B3mJoint::conv_type( enB3mJointType type )
  */
 void B3mJoint::set_pos(double value)
 {
-    pos_ = value;
+    pos_ = reverse_?-value:value;
 }
 
 /**
@@ -83,7 +85,7 @@ void B3mJoint::set_pos(double value)
  */
 void B3mJoint::set_vel(double value)
 {
-    vel_ = value;
+    vel_ = reverse_?-value:value;
 }
 
 /**
@@ -93,7 +95,7 @@ void B3mJoint::set_vel(double value)
  */
 void B3mJoint::set_eff(double value)
 {
-    eff_ = value;
+    eff_ = reverse_?-value:value;
 }
 
 /**
@@ -159,7 +161,7 @@ double B3mJoint::get_eff(void)
  */
 double B3mJoint::get_cmd(void)
 {
-    return cmd_;
+    return reverse_?-cmd_:cmd_;
 }
 
 /**
