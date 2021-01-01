@@ -37,7 +37,7 @@ $ cd ~/kondo_ws/src/kondo_b3m_control/config
 ### 実行
 このパッケージは次のように実行することができます。
 ```
-$ roslaunch kondo_b3m_control b3m_control.launch
+$ roslaunch kondo_b3m_control pos_control.launch
 ```
 
 
