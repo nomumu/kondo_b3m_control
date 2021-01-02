@@ -35,7 +35,8 @@ $ cd ~/kondo_ws/src/kondo_b3m_control/config
 ```
 
 ### 実行
-このパッケージは次のように実行することができます。
+このパッケージは次のように実行することができます。  
+launch時にサーボトルクがON、終了時にトルクOFFになります。位置制御モードでは初期状態で0度へ動くので注意してください。  
 ```
 $ roslaunch kondo_b3m_control pos_control.launch
 ```
